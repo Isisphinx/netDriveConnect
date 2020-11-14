@@ -1,4 +1,2 @@
 # netDriveConnect
-
-to hide the black screen :
-go build -ldflags -Hwindowsgui
+To hide the black screen : go build -ldflags -Hwindowsgui
