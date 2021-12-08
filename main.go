@@ -16,18 +16,6 @@ type conf struct {
 	Strart string `yaml:"start"`
 }
 
-func (c *conf) getConf() *conf {
-	yamlFile, err := ioutil.ReadFile("conf.yaml")
-	if err != nil {
-		log.Printf("yamlFile.Get err   #%v ", err)
-	}
-	err = yaml.Unmarshal(yamlFile, c)
-	if err != nil {
-		log.Fatalf("Unmarshal: %v", err)
-	}
-	return c
-}
-
 func con(key string, element string) {
 	if _, err := os.Stat(key + ":\\"); os.IsNotExist(err) {
 
@@ -58,11 +46,12 @@ func main() {
 		log.Printf("yamlFile.Get err   #%v ", err)
 	}
 	m := make(map[interface{}]map[string]string)
-
-	err = yaml.Unmarshal([]byte(yamlFile), &m)
+	yamlFile = []byte(os.ExpandEnv(string(yamlFile)))
+	err = yaml.Unmarshal(yamlFile, &m)
 	if err != nil {
 		log.Fatalf("error: %v", err)
 	}
+	fmt.Printf("config: %v\n", m)
 	for key, element := range m["drive"] {
 		con(key, element)
 	}

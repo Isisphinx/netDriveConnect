@@ -1,7 +1,5 @@
 drive:
-  r: '\\192.168.0.226\medisphinx'
-  p: '\\127.0.0.1\user_local'
-  n: '\\192.168.0.4\home\bin\conquest'
-  e: '\\192.168.0.226\e'
+  r: \\192.168.0.9\Medisphinx
+  p: \\127.0.0.1\medisphinx\${USERNAME}
 command:
   session.exe: 'R:\'
